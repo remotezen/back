@@ -21,6 +21,14 @@ class UsersController < ApplicationController
 
     end
   end
+  def destroy
+    if @user.destroy
+      render json: @user, status: 200
+    else
+      render json: {errors: "can't delete user"}, status: 404
+    end
+
+  end
   def update
     if @user.update_attributes(user_params)
       render json: @user, status: 200
